@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>In-Between</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #1a5c2e;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+
+    #app {
+      background: #1a5c2e;
+      width: 100%;
+      min-height: 100vh;
+      padding: 24px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* cap width on large screens */
+    @media (min-width: 700px) {
+      #app {
+        max-width: 620px;
+        margin: 0 auto;
+      }
+    }
+
+    h2 {
+      color: #e8d9a0;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    input[type=text],
+    input[type=number] {
+      background: rgba(255, 255, 255, 0.12);
+      border: 0.5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform 0.1s, opacity 0.15s;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .bp {
+      background: #e8d9a0;
+      color: #1a3a0e;
+    }
+
+    .bg {
+      background: rgba(255, 255, 255, 0.15);
+      color: #e8d9a0;
+    }
+
+    .bd {
+      background: #e74c3c;
+      color: #fff;
+    }
+
+    .bgreen {
+      background: #2ecc71;
+      color: #fff;
+    }
+
+    /* SETUP */
+    #setup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .setup-sub {
+      color: #a8d5a2;
+      font-size: 13px;
+    }
+
+    .names-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .setup-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e8d9a0;
+      font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .setup-row input {
+      width: 74px;
+    }
+
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e8d9a0;
+      font-size: 14px;
+    }
+
+    .toggle {
+      width: 38px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 11px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .toggle.on {
+      background: #2ecc71;
+    }
+
+    .toggle-knob {
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+    }
+
+    .toggle.on .toggle-knob {
+      left: 18px;
+    }
+
+    /* CONTRIBUTE */
+    #contribute {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .contrib-title {
+      color: #e8d9a0;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .contrib-sub {
+      color: #a8d5a2;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* POT BAR */
+    .pot-bar {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 10px 22px;
+      color: #e8d9a0;
+      font-size: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      width: 100%;
+      max-width: 560px;
+      justify-content: center;
+    }
+
+    .pot-bar span {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    /* PLAYERS */
+    .players-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pcard {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      padding: 9px 12px;
+      min-width: 105px;
+      border: 2px solid transparent;
+      transition: border 0.2s;
+    }
+
+    .pcard.active {
+      border: 2px solid #e8d9a0;
+    }
+
+    .pcard.done-win {
+      border: 2px solid #2ecc71;
+    }
+
+    .pcard.done-loss {
+      border: 2px solid #e74c3c;
+    }
+
+    .pcard.skipped {
+      opacity: 0.4;
+    }
+
+    .pavatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .pname {
+      color: #e8d9a0;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pstatus {
+      color: #a8d5a2;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .mini-cards {
+      display: flex;
+      gap: 3px;
+      margin-top: 5px;
+    }
+
+    .mc {
+      width: 26px;
+      height: 36px;
+      background: #fff;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 500;
+      border: 1px solid #ccc;
+      line-height: 1.1;
+    }
+
+    .mc.red {
+      color: #c0392b;
+    }
+
+    .mc.black {
+      color: #1a1a1a;
+    }
+
+    .mc.back {
+      background: repeating-linear-gradient(45deg, #1a3a8f 0, #1a3a8f 3px, #15308a 3px, #15308a 6px);
+      border: 1px solid #e8d9a0;
+    }
+
+    .mc.empty {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    /* ACTIVE ZONE */
+    #active-zone {
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 12px;
+      padding: 16px 18px;
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .az-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .az-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .az-name {
+      color: #e8d9a0;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .timer-ring {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .timer-ring svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-90deg);
+    }
+
+    .timer-txt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #e8d9a0;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .big-cards {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .card-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .bc {
+      width: 72px;
+      height: 102px;
+      background: #fff;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #ccc;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .bc.red {
+      color: #c0392b;
+    }
+
+    .bc.black {
+      color: #1a1a1a;
+    }
+
+    .bc.back {
+      background: repeating-linear-gradient(45deg, #1a3a8f 0, #1a3a8f 4px, #15308a 4px, #15308a 8px);
+      border: 2px solid #e8d9a0;
+    }
+
+    .bc.flip-in {
+      animation: flipIn 0.35s ease;
+    }
+
+    @keyframes flipIn {
+      0% {
+        transform: rotateY(90deg) scale(0.8);
+      }
+
+      100% {
+        transform: rotateY(0) scale(1);
+      }
+    }
+
+    .bc .bl {
+      position: absolute;
+      top: 5px;
+      left: 6px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .bc .bs {
+      font-size: 26px;
+    }
+
+    .bc .blb {
+      position: absolute;
+      bottom: 5px;
+      right: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      transform: rotate(180deg);
+    }
+
+    .bc-label {
+      color: #a8d5a2;
+      font-size: 11px;
+    }
+
+    .vs-txt {
+      color: #a8d5a2;
+      font-size: 12px;
+      padding-bottom: 12px;
+    }
+
+    .spread-info {
+      color: #a8d5a2;
+      font-size: 13px;
+    }
+
+    .bet-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .chip {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s;
+      user-select: none;
+    }
+
+    .chip:active {
+      transform: scale(0.9);
+    }
+
+    .c1 {
+      background: #e74c3c;
+      color: #fff;
+      border-color: #c0392b;
+    }
+
+    .c5 {
+      background: #3498db;
+      color: #fff;
+      border-color: #2980b9;
+    }
+
+    .c10 {
+      background: #2ecc71;
+      color: #fff;
+      border-color: #27ae60;
+    }
+
+    .c25 {
+      background: #9b59b6;
+      color: #fff;
+      border-color: #8e44ad;
+    }
+
+    .c50 {
+      background: #f39c12;
+      color: #fff;
+      border-color: #d68910;
+    }
+
+    .c100 {
+      background: #1a1a2e;
+      color: #e8d9a0;
+      border-color: #e8d9a0;
+    }
+
+    .manual-row {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .manual-row input {
+      width: 80px;
+    }
+
+    .bet-display {
+      color: #e8d9a0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .az-result {
+      font-size: 18px;
+      font-weight: 500;
+      padding: 7px 20px;
+      border-radius: 8px;
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .az-result.win {
+      background: #2ecc71;
+      color: #fff;
+    }
+
+    .az-result.loss {
+      background: #e74c3c;
+      color: #fff;
+    }
+
+    .az-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ROUND RESULT */
+    #round-result {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 12px;
+      padding: 16px 20px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .rr-title {
+      color: #e8d9a0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .rr-rows {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .rr-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: #e8d9a0;
+    }
+
+    .rr-res {
+      font-weight: 500;
+      padding: 2px 10px;
+      border-radius: 8px;
+    }
+
+    .rr-res.w {
+      background: #2ecc71;
+      color: #fff;
+    }
+
+    .rr-res.l {
+      background: #e74c3c;
+      color: #fff;
+    }
+
+    .rr-res.s {
+      background: rgba(255, 255, 255, 0.15);
+      color: #e8d9a0;
+    }
+
+    .pot-msg {
+      color: #f39c12;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* HISTORY */
+    .hist-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .hist-label {
+      color: #a8d5a2;
+      font-size: 12px;
+    }
+
+    .history {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .hd {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .hd.w {
+      background: #2ecc71;
+    }
+
+    .hd.l {
+      background: #e74c3c;
+    }
+
+    /* SETTINGS */
+    #settings-panel {
+      display: none;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 8px;
+      padding: 12px 18px;
+      width: 100%;
+      max-width: 560px;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #e8d9a0;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h2>In-Between</h2>
+
+    <div id="setup">
+      <div class="setup-sub">Enter player names (2–10)</div>
+      <div class="names-grid" id="names-grid"></div>
+      <div class="setup-row">Stake per player: <input type="number" id="ante-input" value="50" min="1" step="10"> chips
+      </div>
+      <div class="setup-row">
+        <div class="toggle-wrap">
+          Timer
+          <div class="toggle" id="timer-toggle" onclick="toggleTimer()">
+            <div class="toggle-knob"></div>
+          </div>
+          <span id="timer-label" style="color:#a8d5a2;font-size:13px;">Off</span>
+        </div>
+        <span id="timer-sec-wrap" style="display:none;align-items:center;gap:5px;color:#e8d9a0;font-size:14px;">
+          <input type="number" id="timer-seconds" value="15" min="5" max="60" step="5" style="width:60px;"> sec
+        </span>
+      </div>
+      <button class="btn bp" onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="contribute">
+      <div class="contrib-title" id="contrib-title">Everyone antes up!</div>
+      <div class="contrib-sub" id="contrib-sub"></div>
+      <div class="setup-row">Ante: <input type="number" id="ante-change" value="50" min="1" step="10"> chips</div>
+      <button class="btn bp" onclick="confirmAnte()">Confirm &amp; Start</button>
+    </div>
+
+    <div id="table" style="display:none;flex-direction:column;align-items:center;gap:14px;width:100%;">
+      <div style="display:flex;gap:10px;align-items:center;width:100%;max-width:560px;justify-content:space-between;">
+        <div class="pot-bar" style="flex:1;">Pot: <span id="pot-display">0</span></div>
+        <button class="btn bg" style="padding:8px 14px;font-size:12px;" onclick="toggleSettings()">Settings</button>
+      </div>
+
+      <div id="settings-panel">
+        <div class="sp-row">
+          Timer
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div class="toggle" id="timer-toggle2" onclick="toggleTimer2()">
+              <div class="toggle-knob"></div>
+            </div>
+            <span id="timer-sec-wrap2" style="display:none;align-items:center;gap:5px;color:#e8d9a0;font-size:13px;">
+              <input type="number" id="timer-sec2" value="15" min="5" max="60" step="5" style="width:55px;"> sec
+            </span>
+            <span style="font-size:12px;color:#a8d5a2;" id="timer-label2">Off</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="players-scroll" id="players-scroll"></div>
+
+      <div id="active-zone">
+        <div class="az-header">
+          <div class="az-avatar" id="az-avatar"></div>
+          <div class="az-name" id="az-name"></div>
+          <div class="timer-ring" id="timer-ring" style="display:none;">
+            <svg width="38" height="38">
+              <circle cx="19" cy="19" r="16" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="3" />
+              <circle id="timer-arc" cx="19" cy="19" r="16" fill="none" stroke="#e8d9a0" stroke-width="3"
+                stroke-dasharray="100.5" stroke-dashoffset="0" />
+            </svg>
+            <div class="timer-txt" id="timer-txt">15</div>
+          </div>
+        </div>
+        <div class="big-cards">
+          <div class="card-col">
+            <div class="bc" id="bc-l"><span class="bl" id="bcl-t"></span><span class="bs" id="bcl-s"></span><span
+                class="blb" id="bcl-b"></span></div>
+            <div class="bc-label">Card 1</div>
+          </div>
+          <div class="vs-txt">—</div>
+          <div class="card-col">
+            <div class="bc" id="bc-m"><span class="bl" id="bcm-t"></span><span class="bs" id="bcm-s"></span><span
+                class="blb" id="bcm-b"></span></div>
+            <div class="bc-label">Card 2</div>
+          </div>
+          <div class="vs-txt">vs</div>
+          <div class="card-col">
+            <div class="bc back" id="bc-r"></div>
+            <div class="bc-label">Dealer</div>
+          </div>
+        </div>
+        <div class="spread-info" id="az-spread"></div>
+        <div class="bet-area" id="bet-area">
+          <div class="chip-row">
+            <div class="chip c1" onclick="addBet(1)">1</div>
+            <div class="chip c5" onclick="addBet(5)">5</div>
+            <div class="chip c10" onclick="addBet(10)">10</div>
+            <div class="chip c25" onclick="addBet(25)">25</div>
+            <div class="chip c50" onclick="addBet(50)">50</div>
+            <div class="chip c100" onclick="addBet(100)">100</div>
+          </div>
+          <div class="manual-row">
+            <input type="number" id="manual-input" placeholder="Custom" min="1">
+            <button class="btn bg" style="padding:7px 12px;font-size:12px;" onclick="addManual()">Add</button>
+            <button class="btn bd" style="padding:7px 12px;font-size:12px;" onclick="clearBet()">Clear</button>
+          </div>
+          <div class="bet-display">Bet: <span id="az-bet">0</span></div>
+        </div>
+        <div id="az-res-wrap"></div>
+        <div class="az-btns" id="az-btns">
+          <button class="btn bg" id="btn-skip" onclick="skipPlayer()">Skip</button>
+          <button class="btn bgreen" id="btn-allin" onclick="allIn()">All In</button>
+          <button class="btn bp" id="btn-draw" onclick="doDraw()" style="display:none">Draw Card</button>
+          <button class="btn bp" id="btn-nextp" onclick="nextPlayer()" style="display:none">Next Player</button>
+        </div>
+      </div>
+
+      <div id="round-result"></div>
+
+      <div class="hist-section">
+        <div class="hist-label">Round history</div>
+        <div class="history" id="history"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+    const VALS = { 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, J: 11, Q: 12, K: 13, A: 14 };
+    const SUITS = ['\u2660', '\u2665', '\u2666', '\u2663'];
+    const RED = ['\u2665', '\u2666'];
+    const AVATAR_COLORS = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c', '#e67e22', '#e91e63', '#00bcd4', '#8bc34a'];
+    let deck = [], pot = 0, players = [], curIdx = 0, bet = 0, phase = 'bet', ante = 50, roundLog = [];
+    let timerOn = false, timerSec = 15, timerInterval = null, timerLeft = 0, settingsOpen = false;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    let ac = null;
+    function getAC() { if (!ac && AC) { try { ac = new AC(); } catch (e) { } } return ac; }
+    function playTone(freq, dur, type, vol) {
+      const a = getAC(); if (!a) return;
+      try { const o = a.createOscillator(), g = a.createGain(); o.connect(g); g.connect(a.destination); o.type = type || 'sine'; o.frequency.setValueAtTime(freq, a.currentTime); g.gain.setValueAtTime(vol || 0.3, a.currentTime); g.gain.exponentialRampToValueAtTime(0.001, a.currentTime + dur); o.start(); o.stop(a.currentTime + dur); } catch (e) { }
+    }
+    function playWin() { playTone(523, 0.12); setTimeout(() => playTone(659, 0.12), 120); setTimeout(() => playTone(784, 0.22), 240); }
+    function playLoss() { playTone(300, 0.15, 'sawtooth', 0.2); setTimeout(() => playTone(220, 0.25, 'sawtooth', 0.15), 160); }
+    function playChip() { playTone(900, 0.06, 'square', 0.1); }
+    function playFlip() { playTone(440, 0.05, 'triangle', 0.15); setTimeout(() => playTone(660, 0.07, 'triangle', 0.1), 60); }
+    function playTick() { playTone(1000, 0.04, 'square', 0.06); }
+
+    (function () {
+      const g = document.getElementById('names-grid');
+      for (let i = 1; i <= 10; i++) { const inp = document.createElement('input'); inp.type = 'text'; inp.placeholder = 'Player ' + i + (i > 2 ? ' (optional)' : ''); inp.id = 'pn-' + i; g.appendChild(inp); }
+    })();
+
+    function toggleTimer() { timerOn = !timerOn; document.getElementById('timer-toggle').className = 'toggle' + (timerOn ? ' on' : ''); document.getElementById('timer-label').textContent = timerOn ? 'On' : 'Off'; document.getElementById('timer-sec-wrap').style.display = timerOn ? 'flex' : 'none'; syncTimer2(); }
+    function toggleTimer2() { timerOn = !timerOn; document.getElementById('timer-toggle2').className = 'toggle' + (timerOn ? ' on' : ''); document.getElementById('timer-label2').textContent = timerOn ? 'On' : 'Off'; document.getElementById('timer-sec-wrap2').style.display = timerOn ? 'flex' : 'none'; }
+    function toggleSettings() { settingsOpen = !settingsOpen; document.getElementById('settings-panel').style.display = settingsOpen ? 'flex' : 'none'; }
+    function syncTimer2() { const t2 = document.getElementById('timer-toggle2'); if (t2) t2.className = 'toggle' + (timerOn ? ' on' : ''); }
+
+    function buildDeck() { deck = []; for (let r of RANKS) for (let s of SUITS) deck.push({ r, s, v: VALS[r] }); for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[deck[i], deck[j]] = [deck[j], deck[i]]; } }
+    function pop() { if (!deck.length) buildDeck(); return deck.pop(); }
+    function isRed(c) { return RED.includes(c.s); }
+    function cc(c) { return isRed(c) ? 'red' : 'black'; }
+
+    function startGame() {
+      const names = [];
+      for (let i = 1; i <= 10; i++) { const v = document.getElementById('pn-' + i).value.trim(); if (v) names.push(v); else if (i <= 2) { alert('Enter at least 2 player names.'); return; } }
+      ante = parseInt(document.getElementById('ante-input').value) || 50;
+      timerSec = parseInt(document.getElementById('timer-seconds').value) || 15;
+      players = names.map((n, i) => ({ name: n, color: AVATAR_COLORS[i % AVATAR_COLORS.length], initials: n.slice(0, 2).toUpperCase() }));
+      document.getElementById('setup').style.display = 'none';
+      showContribute('Everyone antes up to start!');
+    }
+
+    function showContribute(msg) {
+      stopTimer();
+      document.getElementById('table').style.display = 'none';
+      const c = document.getElementById('contribute'); c.style.display = 'flex';
+      document.getElementById('contrib-title').textContent = msg;
+      document.getElementById('contrib-sub').textContent = players.length + ' players × ' + ante + ' = ' + players.length * ante + ' chips';
+      const ac2 = document.getElementById('ante-change'); ac2.value = ante;
+      ac2.oninput = function () { ante = parseInt(this.value) || ante; document.getElementById('contrib-sub').textContent = players.length + ' players × ' + ante + ' = ' + players.length * ante + ' chips'; };
+    }
+
+    function confirmAnte() {
+      ante = parseInt(document.getElementById('ante-change').value) || 50;
+      pot += players.length * ante;
+      document.getElementById('contribute').style.display = 'none';
+      document.getElementById('table').style.display = 'flex';
+      startRound();
+    }
+
+    function startRound() {
+      buildDeck(); roundLog = []; curIdx = 0;
+      players.forEach(p => { p.result = null; p.bet = 0; p.cards = [null, null]; p.draw = null; });
+      renderPot(); renderAll();
+      document.getElementById('round-result').innerHTML = '';
+      document.getElementById('round-result').style.display = 'none';
+      activatePlayer(0);
+    }
+
+    function renderPot() { document.getElementById('pot-display').textContent = pot; }
+
+    function renderAll() {
+      const sc = document.getElementById('players-scroll'); sc.innerHTML = '';
+      players.forEach((p, i) => {
+        const d = document.createElement('div');
+        const cls = i === curIdx ? 'active' : p.result === 'win' ? 'done-win' : p.result === 'loss' ? 'done-loss' : p.result === 'skip' ? 'skipped' : '';
+        d.className = 'pcard ' + cls;
+        const st = p.result ? (p.result === 'skip' ? 'Skipped' : 'Bet: ' + p.bet) : i === curIdx ? 'Betting...' : 'Waiting';
+        d.innerHTML = `<div class="pavatar" style="background:${p.color};color:#fff;">${p.initials}</div><div class="pname">${p.name}</div><div class="pstatus">${st}</div><div class="mini-cards">${mc(p.cards ? p.cards[0] : null)}${mc(p.cards ? p.cards[1] : null)}${p.draw ? mc(p.draw) : mcE()}</div>`;
+        sc.appendChild(d);
+      });
+    }
+
+    function mc(c) { if (!c) return `<div class="mc empty"></div>`; return `<div class="mc ${cc(c)}">${c.r}<br>${c.s}</div>`; }
+    function mcE() { return `<div class="mc empty"></div>`; }
+
+    function activatePlayer(idx) {
+      curIdx = idx; bet = 0; phase = 'bet';
+      const p = players[idx];
+      let a = pop(), b = pop();
+      if (a.v > b.v) [a, b] = [b, a];
+      if (a.v === b.v) { b = pop(); if (a.v > b.v) [a, b] = [b, a]; }
+      p.cards = [a, b]; playFlip();
+      setBig('bc-l', 'bcl-t', 'bcl-s', 'bcl-b', a, true);
+      setBig('bc-m', 'bcm-t', 'bcm-s', 'bcm-b', b, true);
+      const r = document.getElementById('bc-r'); r.className = 'bc back'; r.innerHTML = '';
+      const av = document.getElementById('az-avatar'); av.style.background = p.color; av.style.color = '#fff'; av.textContent = p.initials;
+      document.getElementById('az-name').textContent = p.name + "'s turn";
+      document.getElementById('az-bet').textContent = 0;
+      document.getElementById('az-res-wrap').innerHTML = '';
+      document.getElementById('az-spread').textContent = spreadTxt(a, b);
+      document.getElementById('bet-area').style.display = 'flex';
+      document.getElementById('btn-skip').style.display = '';
+      document.getElementById('btn-allin').style.display = '';
+      document.getElementById('btn-draw').style.display = 'none';
+      document.getElementById('btn-nextp').style.display = 'none';
+      document.getElementById('active-zone').style.display = 'flex';
+      startTimerIfOn(); renderAll();
+    }
+
+    function spreadTxt(a, b) { const s = b.v - a.v - 1; return s > 0 ? s + ' card' + (s > 1 ? 's' : '') + ' in between' : 'No cards in between — risky!'; }
+
+    function setBig(el, t, s, b, c, anim) {
+      const e = document.getElementById(el); e.className = 'bc ' + cc(c) + (anim ? ' flip-in' : '');
+      document.getElementById(t).textContent = c.r; document.getElementById(s).textContent = c.s; document.getElementById(b).textContent = c.r;
+    }
+
+    function addBet(amt) { if (phase !== 'bet') return; playChip(); if (bet + amt > pot) amt = pot - bet; if (amt <= 0) return; bet += amt; document.getElementById('az-bet').textContent = bet; document.getElementById('btn-draw').style.display = ''; }
+    function addManual() { const v = parseInt(document.getElementById('manual-input').value) || 0; if (v > 0) addBet(v); document.getElementById('manual-input').value = ''; }
+    function clearBet() { if (phase !== 'bet') return; bet = 0; document.getElementById('az-bet').textContent = 0; document.getElementById('btn-draw').style.display = 'none'; }
+    function allIn() { if (phase !== 'bet') return; bet = 0; addBet(pot); }
+
+    function skipPlayer() { stopTimer(); players[curIdx].result = 'skip'; players[curIdx].bet = 0; roundLog.push({ name: players[curIdx].name, result: 'skip', bet: 0 }); advance(); }
+
+    function doDraw() {
+      if (phase !== 'bet' || bet === 0) return;
+      stopTimer(); phase = 'draw';
+      const p = players[curIdx]; const d = pop(); p.draw = d; p.bet = bet; const [a, b] = p.cards;
+      playFlip();
+      const rc = document.getElementById('bc-r'); rc.className = 'bc ' + cc(d) + ' flip-in'; rc.innerHTML = `<span class="bl">${d.r}</span><span class="bs">${d.s}</span><span class="blb">${d.r}</span>`;
+      const win = d.v > a.v && d.v < b.v; const hit = d.v === a.v || d.v === b.v;
+      p.result = win ? 'win' : 'loss'; if (win) pot -= bet; else pot += bet;
+      roundLog.push({ name: p.name, result: p.result, bet }); renderPot();
+      setTimeout(() => { win ? playWin() : playLoss(); document.getElementById('az-res-wrap').innerHTML = `<div class="az-result ${win ? 'win' : 'loss'}">${win ? 'WIN  +' + bet : (hit ? 'HIT BOUNDARY  -' + bet : 'LOSS  -' + bet)}</div>`; }, 200);
+      addHist(win ? 'w' : 'l');
+      document.getElementById('bet-area').style.display = 'none';
+      document.getElementById('btn-skip').style.display = 'none';
+      document.getElementById('btn-allin').style.display = 'none';
+      document.getElementById('btn-draw').style.display = 'none';
+      renderAll();
+      if (win && pot === 0) { setTimeout(() => endGame(p), 700); } else { document.getElementById('btn-nextp').style.display = ''; }
+    }
+
+    function endGame(winner) {
+      document.getElementById('active-zone').style.display = 'none';
+      const rr = document.getElementById('round-result'); rr.style.display = 'flex'; rr.innerHTML = '';
+      const title = document.createElement('div'); title.className = 'rr-title'; title.textContent = 'Round Summary'; rr.appendChild(title);
+      const rows = document.createElement('div'); rows.className = 'rr-rows';
+      roundLog.forEach(r => { const d = document.createElement('div'); d.className = 'rr-row'; const rc = r.result === 'win' ? 'w' : r.result === 'loss' ? 'l' : 's'; const rt = r.result === 'win' ? '+' + r.bet : r.result === 'loss' ? '-' + r.bet : 'Skip'; d.innerHTML = `<span>${r.name}</span><span class="rr-res ${rc}">${rt}</span>`; rows.appendChild(d); });
+      const pr = document.createElement('div'); pr.className = 'rr-row'; pr.style.cssText = 'border-top:0.5px solid rgba(255,255,255,0.2);padding-top:6px;margin-top:4px;'; pr.innerHTML = `<span>Pot remaining</span><span style="color:#e8d9a0;font-weight:500;">${pot}</span>`; rows.appendChild(pr); rr.appendChild(rows);
+      const wm = document.createElement('div'); wm.style.cssText = 'display:flex;align-items:center;gap:8px;justify-content:center;margin-top:4px;'; wm.innerHTML = `<div style="width:30px;height:30px;border-radius:50%;background:${winner.color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;">${winner.initials}</div><span style="color:#2ecc71;font-size:15px;font-weight:500;">${winner.name} drained the pot!</span>`; rr.appendChild(wm);
+      const nb = document.createElement('button'); nb.className = 'btn bp'; nb.textContent = 'New Game — Ante Up'; nb.style.marginTop = '6px'; nb.onclick = () => showContribute('New game! Everyone antes up.'); rr.appendChild(nb);
+    }
+
+    function nextPlayer() { advance(); }
+
+    function advance() {
+      renderAll();
+      const next = players.findIndex((p, i) => i > curIdx && p.result === null);
+      if (next === -1) { showRoundSummary(); } else { activatePlayer(next); }
+    }
+
+    function showRoundSummary() {
+      stopTimer();
+      document.getElementById('active-zone').style.display = 'none';
+      const rr = document.getElementById('round-result'); rr.style.display = 'flex'; rr.innerHTML = '';
+      const title = document.createElement('div'); title.className = 'rr-title'; title.textContent = 'Round Summary'; rr.appendChild(title);
+      const rows = document.createElement('div'); rows.className = 'rr-rows';
+      roundLog.forEach(r => { const d = document.createElement('div'); d.className = 'rr-row'; const rc = r.result === 'win' ? 'w' : r.result === 'loss' ? 'l' : 's'; const rt = r.result === 'win' ? '+' + r.bet : r.result === 'loss' ? '-' + r.bet : 'Skip'; d.innerHTML = `<span>${r.name}</span><span class="rr-res ${rc}">${rt}</span>`; rows.appendChild(d); });
+      const pr = document.createElement('div'); pr.className = 'rr-row'; pr.style.cssText = 'border-top:0.5px solid rgba(255,255,255,0.2);padding-top:6px;margin-top:4px;'; pr.innerHTML = `<span>Pot</span><span style="color:#e8d9a0;font-weight:500;">${pot}</span>`; rows.appendChild(pr); rr.appendChild(rows);
+      if (pot <= 0) { const m = document.createElement('div'); m.className = 'pot-msg'; m.textContent = 'Pot is empty — new game!'; rr.appendChild(m); setTimeout(() => showContribute('New game! Everyone antes up.'), 1400); }
+      else { const m = document.createElement('div'); m.className = 'pot-msg'; m.textContent = 'No winner this round — pot stays!'; rr.appendChild(m); const nb = document.createElement('button'); nb.className = 'btn bp'; nb.textContent = 'Next Round'; nb.style.marginTop = '6px'; nb.onclick = startRound; rr.appendChild(nb); }
+    }
+
+    function startTimerIfOn() {
+      stopTimer(); if (!timerOn) return;
+      timerSec = parseInt(document.getElementById('timer-sec2').value) || 15;
+      timerLeft = timerSec; updateTimerUI();
+      document.getElementById('timer-ring').style.display = '';
+      timerInterval = setInterval(() => { timerLeft--; if (timerLeft <= 3) playTick(); updateTimerUI(); if (timerLeft <= 0) { stopTimer(); skipPlayer(); } }, 1000);
+    }
+    function stopTimer() { clearInterval(timerInterval); timerInterval = null; document.getElementById('timer-ring').style.display = 'none'; }
+    function updateTimerUI() {
+      const circ = 100.5; const offset = circ * (1 - timerLeft / timerSec);
+      document.getElementById('timer-arc').style.strokeDashoffset = offset;
+      document.getElementById('timer-txt').textContent = timerLeft;
+      document.getElementById('timer-arc').style.stroke = timerLeft <= 5 ? '#e74c3c' : timerLeft <= 10 ? '#f39c12' : '#e8d9a0';
+    }
+
+    function addHist(t) { const d = document.createElement('div'); d.className = 'hd ' + t; const h = document.getElementById('history'); h.appendChild(d); if (h.children.length > 40) h.removeChild(h.firstChild); }
+
+    buildDeck();
+  </script>
+</body>
+
+</html>
