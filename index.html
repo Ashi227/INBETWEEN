@@ -41,8 +41,7 @@
       gap: 14px;
     }
 
-    /* cap width on large screens */
-    @media (min-width: 700px) {
+    @media(min-width:700px) {
       #app {
         max-width: 620px;
         margin: 0 auto;
@@ -62,10 +61,11 @@
       background: rgba(255, 255, 255, 0.12);
       border: 0.5px solid rgba(255, 255, 255, 0.3);
       border-radius: 8px;
-      padding: 8px 10px;
+      padding: 9px 12px;
       color: #fff;
       font-size: 14px;
       outline: none;
+      width: 100%;
     }
 
     input::placeholder {
@@ -73,13 +73,14 @@
     }
 
     .btn {
-      padding: 10px 18px;
+      padding: 11px 20px;
       border-radius: 8px;
       border: none;
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
       transition: transform 0.1s, opacity 0.15s;
+      width: 100%;
     }
 
     .btn:active {
@@ -111,127 +112,210 @@
       color: #fff;
     }
 
-    /* SETUP */
-    #setup {
+    /* LOBBY */
+    #lobby {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       width: 100%;
-      max-width: 480px;
+      max-width: 360px;
     }
 
-    .setup-sub {
+    .lobby-card {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lobby-title {
+      color: #e8d9a0;
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .lobby-sub {
       color: #a8d5a2;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #a8d5a2;
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .room-code-display {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .room-code-label {
+      color: #a8d5a2;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .room-code {
+      color: #e8d9a0;
+      font-size: 36px;
+      font-weight: 500;
+      letter-spacing: 8px;
+    }
+
+    .waiting-players {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .waiting-player {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .wp-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .wp-name {
+      color: #e8d9a0;
       font-size: 13px;
     }
 
-    .names-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      width: 100%;
+    .wp-host {
+      color: #f39c12;
+      font-size: 10px;
+      margin-left: auto;
     }
 
-    .setup-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #e8d9a0;
-      font-size: 14px;
-      flex-wrap: wrap;
-      justify-content: center;
+    .waiting-msg {
+      color: #a8d5a2;
+      font-size: 12px;
+      text-align: center;
+      padding: 8px 0;
     }
 
-    .setup-row input {
-      width: 74px;
-    }
-
-    .toggle-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #e8d9a0;
-      font-size: 14px;
-    }
-
-    .toggle {
-      width: 38px;
-      height: 22px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 11px;
-      position: relative;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .toggle.on {
-      background: #2ecc71;
-    }
-
-    .toggle-knob {
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border-radius: 50%;
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      transition: left 0.2s;
-    }
-
-    .toggle.on .toggle-knob {
-      left: 18px;
-    }
-
-    /* CONTRIBUTE */
-    #contribute {
+    /* ANTE SCREEN */
+    #ante-screen {
       display: none;
       flex-direction: column;
       align-items: center;
       gap: 12px;
       width: 100%;
-      max-width: 420px;
+      max-width: 360px;
     }
 
-    .contrib-title {
+    .ante-title {
       color: #e8d9a0;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       text-align: center;
     }
 
-    .contrib-sub {
+    .ante-sub {
       color: #a8d5a2;
-      font-size: 13px;
+      font-size: 12px;
       text-align: center;
     }
 
-    /* POT BAR */
-    .pot-bar {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
-      padding: 10px 22px;
+    .ante-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: #e8d9a0;
       font-size: 14px;
+      width: 100%;
+    }
+
+    .ante-row input {
+      flex: 1;
+    }
+
+    /* TABLE */
+    #table {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .top-bar {
       display: flex;
-      gap: 14px;
+      gap: 8px;
       align-items: center;
       width: 100%;
       max-width: 560px;
+      justify-content: space-between;
+    }
+
+    .pot-bar {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 9px 18px;
+      color: #e8d9a0;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex: 1;
       justify-content: center;
     }
 
     .pot-bar span {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 500;
     }
 
-    /* PLAYERS */
+    .room-pill {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 9px 14px;
+      color: #a8d5a2;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .room-pill strong {
+      color: #e8d9a0;
+      letter-spacing: 2px;
+    }
+
     .players-scroll {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 7px;
       justify-content: center;
       width: 100%;
     }
@@ -240,7 +324,7 @@
       background: rgba(0, 0, 0, 0.25);
       border-radius: 8px;
       padding: 9px 12px;
-      min-width: 105px;
+      min-width: 100px;
       border: 2px solid transparent;
       transition: border 0.2s;
     }
@@ -261,49 +345,58 @@
       opacity: 0.4;
     }
 
+    .pcard.me {
+      box-shadow: 0 0 0 1px rgba(232, 217, 160, 0.3);
+    }
+
     .pavatar {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 13px;
       font-weight: 500;
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .pname {
       color: #e8d9a0;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    .pname-you {
+      color: #f39c12;
+      font-size: 10px;
+    }
+
     .pstatus {
       color: #a8d5a2;
-      font-size: 11px;
+      font-size: 10px;
       margin-top: 2px;
     }
 
     .mini-cards {
       display: flex;
       gap: 3px;
-      margin-top: 5px;
+      margin-top: 4px;
     }
 
     .mc {
-      width: 26px;
-      height: 36px;
+      width: 24px;
+      height: 34px;
       background: #fff;
       border-radius: 4px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 500;
       border: 1px solid #ccc;
       line-height: 1.1;
@@ -337,7 +430,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
     }
 
     .az-header {
@@ -403,8 +496,8 @@
     }
 
     .bc {
-      width: 72px;
-      height: 102px;
+      width: 70px;
+      height: 98px;
       background: #fff;
       border-radius: 8px;
       display: flex;
@@ -413,7 +506,6 @@
       justify-content: center;
       border: 1.5px solid #ccc;
       position: relative;
-      transition: transform 0.3s;
     }
 
     .bc.red {
@@ -452,7 +544,7 @@
     }
 
     .bc .bs {
-      font-size: 26px;
+      font-size: 24px;
     }
 
     .bc .blb {
@@ -466,38 +558,38 @@
 
     .bc-label {
       color: #a8d5a2;
-      font-size: 11px;
+      font-size: 10px;
     }
 
     .vs-txt {
       color: #a8d5a2;
-      font-size: 12px;
+      font-size: 11px;
       padding-bottom: 12px;
     }
 
     .spread-info {
       color: #a8d5a2;
-      font-size: 13px;
+      font-size: 12px;
     }
 
     .bet-area {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 9px;
+      gap: 8px;
       width: 100%;
     }
 
     .chip-row {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .chip {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       border: 3px solid rgba(255, 255, 255, 0.3);
       font-size: 12px;
@@ -552,12 +644,14 @@
 
     .manual-row {
       display: flex;
-      gap: 7px;
+      gap: 6px;
       align-items: center;
+      width: 100%;
+      max-width: 300px;
     }
 
     .manual-row input {
-      width: 80px;
+      flex: 1;
     }
 
     .bet-display {
@@ -567,9 +661,9 @@
     }
 
     .az-result {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 500;
-      padding: 7px 20px;
+      padding: 6px 20px;
       border-radius: 8px;
       animation: popIn 0.3s ease;
     }
@@ -598,9 +692,25 @@
 
     .az-btns {
       display: flex;
-      gap: 8px;
+      gap: 7px;
       flex-wrap: wrap;
       justify-content: center;
+    }
+
+    /* watching banner */
+    .watching-banner {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 10px 18px;
+      color: #a8d5a2;
+      font-size: 13px;
+      text-align: center;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .watching-banner strong {
+      color: #e8d9a0;
     }
 
     /* ROUND RESULT */
@@ -608,10 +718,10 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       background: rgba(0, 0, 0, 0.28);
       border-radius: 12px;
-      padding: 16px 20px;
+      padding: 14px 18px;
       width: 100%;
       max-width: 560px;
     }
@@ -626,7 +736,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
 
     .rr-row {
@@ -664,58 +774,82 @@
       text-align: center;
     }
 
-    /* HISTORY */
     .hist-section {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px;
       width: 100%;
       max-width: 560px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
     }
 
     .hist-label {
-      color: #a8d5a2;
-      font-size: 12px;
+      color: #e8d9a0;
+      font-size: 13px;
+      font-weight: 500;
     }
 
     .history {
       display: flex;
-      gap: 5px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+      width: 100%;
     }
 
-    .hd {
-      width: 11px;
-      height: 11px;
+    .hist-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .hist-num {
+      color: #a8d5a2;
+      font-size: 11px;
+      min-width: 22px;
+    }
+
+    .hist-dot {
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
+      flex-shrink: 0;
     }
 
-    .hd.w {
+    .hist-dot.w {
       background: #2ecc71;
     }
 
-    .hd.l {
+    .hist-dot.l {
       background: #e74c3c;
     }
 
-    /* SETTINGS */
-    #settings-panel {
-      display: none;
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 8px;
-      padding: 12px 18px;
-      width: 100%;
-      max-width: 560px;
-      flex-direction: column;
-      gap: 10px;
+    .hist-dot.s {
+      background: #888;
     }
 
-    .sp-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #e8d9a0;
+    .hist-winner {
+      color: #2ecc71;
+      font-weight: 500;
+    }
+
+    .hist-nowinner {
+      color: #a8d5a2;
+    }
+
+    .hist-empty {
+      color: #a8d5a2;
+      font-size: 12px;
+    }
+
+    .status-msg {
+      color: #a8d5a2;
       font-size: 13px;
+      text-align: center;
+      padding: 8px 0;
     }
   </style>
 </head>
@@ -724,57 +858,74 @@
   <div id="app">
     <h2>In-Between</h2>
 
-    <div id="setup">
-      <div class="setup-sub">Enter player names (2–10)</div>
-      <div class="names-grid" id="names-grid"></div>
-      <div class="setup-row">Stake per player: <input type="number" id="ante-input" value="50" min="1" step="10"> chips
+    <!-- LOBBY -->
+    <div id="lobby">
+      <div class="lobby-card">
+        <div class="lobby-title">Create a Room</div>
+        <input type="text" id="host-name" placeholder="Your name" maxlength="20">
+        <input type="number" id="ante-input" value="50" min="1" step="10" placeholder="Ante per player">
+        <div style="color:#a8d5a2;font-size:12px;text-align:center;">Ante per player (chips)</div>
+        <button class="btn bp" onclick="createRoom()">Create Room</button>
       </div>
-      <div class="setup-row">
-        <div class="toggle-wrap">
-          Timer
-          <div class="toggle" id="timer-toggle" onclick="toggleTimer()">
-            <div class="toggle-knob"></div>
-          </div>
-          <span id="timer-label" style="color:#a8d5a2;font-size:13px;">Off</span>
-        </div>
-        <span id="timer-sec-wrap" style="display:none;align-items:center;gap:5px;color:#e8d9a0;font-size:14px;">
-          <input type="number" id="timer-seconds" value="15" min="5" max="60" step="5" style="width:60px;"> sec
-        </span>
+      <div class="divider">or</div>
+      <div class="lobby-card">
+        <div class="lobby-title">Join a Room</div>
+        <input type="text" id="join-name" placeholder="Your name" maxlength="20">
+        <input type="text" id="join-code" placeholder="Room code (e.g. KXBT)" maxlength="6"
+          style="text-transform:uppercase;letter-spacing:4px;text-align:center;font-size:18px;">
+        <button class="btn bg" onclick="joinRoom()">Join Room</button>
       </div>
-      <button class="btn bp" onclick="startGame()">Start Game</button>
     </div>
 
-    <div id="contribute">
-      <div class="contrib-title" id="contrib-title">Everyone antes up!</div>
-      <div class="contrib-sub" id="contrib-sub"></div>
-      <div class="setup-row">Ante: <input type="number" id="ante-change" value="50" min="1" step="10"> chips</div>
-      <button class="btn bp" onclick="confirmAnte()">Confirm &amp; Start</button>
-    </div>
-
-    <div id="table" style="display:none;flex-direction:column;align-items:center;gap:14px;width:100%;">
-      <div style="display:flex;gap:10px;align-items:center;width:100%;max-width:560px;justify-content:space-between;">
-        <div class="pot-bar" style="flex:1;">Pot: <span id="pot-display">0</span></div>
-        <button class="btn bg" style="padding:8px 14px;font-size:12px;" onclick="toggleSettings()">Settings</button>
+    <!-- WAITING ROOM -->
+    <div id="waiting"
+      style="display:none;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:400px;">
+      <div class="room-code-display" style="width:100%;">
+        <div class="room-code-label">Share this code with friends</div>
+        <div class="room-code" id="display-code">----</div>
       </div>
-
-      <div id="settings-panel">
-        <div class="sp-row">
-          Timer
-          <div style="display:flex;align-items:center;gap:9px;">
-            <div class="toggle" id="timer-toggle2" onclick="toggleTimer2()">
-              <div class="toggle-knob"></div>
-            </div>
-            <span id="timer-sec-wrap2" style="display:none;align-items:center;gap:5px;color:#e8d9a0;font-size:13px;">
-              <input type="number" id="timer-sec2" value="15" min="5" max="60" step="5" style="width:55px;"> sec
-            </span>
-            <span style="font-size:12px;color:#a8d5a2;" id="timer-label2">Off</span>
+      <div class="waiting-players" id="waiting-players"></div>
+      <div class="waiting-msg" id="waiting-msg">Waiting for players... (2–10)</div>
+      <div id="timer-toggle-wrap"
+        style="display:none;align-items:center;gap:10px;background:rgba(0,0,0,0.2);border-radius:8px;padding:10px 16px;width:100%;">
+        <span style="color:#e8d9a0;font-size:13px;">Turn timer (15s)</span>
+        <div class="toggle" id="timer-tog" onclick="toggleTimerOpt()"
+          style="width:38px;height:22px;background:rgba(255,255,255,0.2);border-radius:11px;position:relative;cursor:pointer;transition:background 0.2s;margin-left:auto;">
+          <div class="toggle-knob"
+            style="width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:left 0.2s;">
           </div>
         </div>
+        <span id="timer-tog-label" style="color:#a8d5a2;font-size:12px;">Off</span>
       </div>
+      <button class="btn bp" id="btn-start-game" onclick="hostStartGame()" style="display:none;">Start Game</button>
+      <button class="btn bg" onclick="leaveRoom()">Leave Room</button>
+    </div>
 
+    <!-- ANTE SCREEN -->
+    <div id="ante-screen">
+      <div class="ante-title" id="ante-title">Everyone antes up!</div>
+      <div class="ante-sub" id="ante-sub"></div>
+      <div id="ante-input-wrap" style="display:none;flex-direction:column;gap:10px;width:100%;max-width:340px;">
+        <div style="display:flex;align-items:center;gap:10px;color:#e8d9a0;font-size:14px;">
+          <span>Stake per player:</span>
+          <input type="number" id="ante-custom" value="50" min="1" step="10" style="width:80px;">
+          <span style="color:#a8d5a2;font-size:12px;">chips</span>
+        </div>
+        <div class="ante-sub" id="ante-calc">2 players × 50 = 100 chips</div>
+      </div>
+      <button class="btn bp" id="btn-confirm-ante" onclick="hostConfirmAnte()" style="display:none;">Confirm &amp; Start
+        Round</button>
+      <div class="status-msg" id="ante-waiting-msg" style="display:none;">Waiting for host to start...</div>
+    </div>
+
+    <!-- TABLE -->
+    <div id="table">
+      <div class="top-bar">
+        <div class="pot-bar">Pot: <span id="pot-display">0</span></div>
+        <div class="room-pill">Room: <strong id="room-pill-code"></strong></div>
+      </div>
       <div class="players-scroll" id="players-scroll"></div>
-
-      <div id="active-zone">
+      <div id="active-zone" style="display:none;">
         <div class="az-header">
           <div class="az-avatar" id="az-avatar"></div>
           <div class="az-name" id="az-name"></div>
@@ -817,112 +968,258 @@
           </div>
           <div class="manual-row">
             <input type="number" id="manual-input" placeholder="Custom" min="1">
-            <button class="btn bg" style="padding:7px 12px;font-size:12px;" onclick="addManual()">Add</button>
-            <button class="btn bd" style="padding:7px 12px;font-size:12px;" onclick="clearBet()">Clear</button>
+            <button class="btn bg" style="padding:8px 12px;font-size:12px;width:auto;"
+              onclick="addManual()">Add</button>
+            <button class="btn bd" style="padding:8px 12px;font-size:12px;width:auto;"
+              onclick="clearBet()">Clear</button>
           </div>
           <div class="bet-display">Bet: <span id="az-bet">0</span></div>
         </div>
         <div id="az-res-wrap"></div>
         <div class="az-btns" id="az-btns">
-          <button class="btn bg" id="btn-skip" onclick="skipPlayer()">Skip</button>
-          <button class="btn bgreen" id="btn-allin" onclick="allIn()">All In</button>
-          <button class="btn bp" id="btn-draw" onclick="doDraw()" style="display:none">Draw Card</button>
-          <button class="btn bp" id="btn-nextp" onclick="nextPlayer()" style="display:none">Next Player</button>
+          <button class="btn bg" id="btn-skip" onclick="doSkip()" style="width:auto;padding:9px 16px;">Skip</button>
+          <button class="btn bgreen" id="btn-allin" onclick="doAllIn()" style="width:auto;padding:9px 16px;">All
+            In</button>
+          <button class="btn bp" id="btn-draw" onclick="doDraw()" style="display:none;width:auto;padding:9px 16px;">Draw
+            Card</button>
+          <button class="btn bp" id="btn-nextp" onclick="doNextPlayer()"
+            style="display:none;width:auto;padding:9px 16px;">Next Player</button>
         </div>
       </div>
-
+      <div class="watching-banner" id="watching-banner" style="display:none;"></div>
       <div id="round-result"></div>
-
       <div class="hist-section">
         <div class="hist-label">Round history</div>
-        <div class="history" id="history"></div>
+        <div class="history" id="history"><span class="hist-empty">No rounds played yet</span></div>
       </div>
     </div>
   </div>
 
+  <!-- Firebase CDN — must load FIRST -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAU6B8qxmZiI74yhUrjYcf56rVqYtsLEKA",
+      authDomain: "inbetween-5ef90.firebaseapp.com",
+      projectId: "inbetween-5ef90",
+      storageBucket: "inbetween-5ef90.firebasestorage.app",
+      messagingSenderId: "420284952815",
+      appId: "1:420284952815:web:6e90d270db08ef8bf42b1a",
+      databaseURL: "https://inbetween-5ef90-default-rtdb.asia-southeast1.firebasedatabase.app"
+    };
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.database();
+  </script>
+
   <script>
     const RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    const VALS = { 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, J: 11, Q: 12, K: 13, A: 14 };
+    const VALS = { A: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, 10: 10, J: 11, Q: 12, K: 13 };
     const SUITS = ['\u2660', '\u2665', '\u2666', '\u2663'];
     const RED = ['\u2665', '\u2666'];
-    const AVATAR_COLORS = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c', '#e67e22', '#e91e63', '#00bcd4', '#8bc34a'];
-    let deck = [], pot = 0, players = [], curIdx = 0, bet = 0, phase = 'bet', ante = 50, roundLog = [];
-    let timerOn = false, timerSec = 15, timerInterval = null, timerLeft = 0, settingsOpen = false;
+    const COLORS = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c', '#e67e22', '#e91e63', '#00bcd4', '#8bc34a'];
+
+    let myId = null, myName = '', roomCode = '', isHost = false;
+    let gameState = null, localBet = 0, localPhase = 'idle', timerInterval = null;
+    let timerOn = false, lastTurnIdx = -1, lastTurnPhase = '';
+
+    // Audio
     const AC = window.AudioContext || window.webkitAudioContext;
     let ac = null;
     function getAC() { if (!ac && AC) { try { ac = new AC(); } catch (e) { } } return ac; }
-    function playTone(freq, dur, type, vol) {
-      const a = getAC(); if (!a) return;
-      try { const o = a.createOscillator(), g = a.createGain(); o.connect(g); g.connect(a.destination); o.type = type || 'sine'; o.frequency.setValueAtTime(freq, a.currentTime); g.gain.setValueAtTime(vol || 0.3, a.currentTime); g.gain.exponentialRampToValueAtTime(0.001, a.currentTime + dur); o.start(); o.stop(a.currentTime + dur); } catch (e) { }
-    }
+    function playTone(f, d, t, v) { const a = getAC(); if (!a) return; try { const o = a.createOscillator(), g = a.createGain(); o.connect(g); g.connect(a.destination); o.type = t || 'sine'; o.frequency.setValueAtTime(f, a.currentTime); g.gain.setValueAtTime(v || 0.3, a.currentTime); g.gain.exponentialRampToValueAtTime(0.001, a.currentTime + d); o.start(); o.stop(a.currentTime + d); } catch (e) { } }
     function playWin() { playTone(523, 0.12); setTimeout(() => playTone(659, 0.12), 120); setTimeout(() => playTone(784, 0.22), 240); }
     function playLoss() { playTone(300, 0.15, 'sawtooth', 0.2); setTimeout(() => playTone(220, 0.25, 'sawtooth', 0.15), 160); }
     function playChip() { playTone(900, 0.06, 'square', 0.1); }
     function playFlip() { playTone(440, 0.05, 'triangle', 0.15); setTimeout(() => playTone(660, 0.07, 'triangle', 0.1), 60); }
     function playTick() { playTone(1000, 0.04, 'square', 0.06); }
 
-    (function () {
-      const g = document.getElementById('names-grid');
-      for (let i = 1; i <= 10; i++) { const inp = document.createElement('input'); inp.type = 'text'; inp.placeholder = 'Player ' + i + (i > 2 ? ' (optional)' : ''); inp.id = 'pn-' + i; g.appendChild(inp); }
-    })();
-
-    function toggleTimer() { timerOn = !timerOn; document.getElementById('timer-toggle').className = 'toggle' + (timerOn ? ' on' : ''); document.getElementById('timer-label').textContent = timerOn ? 'On' : 'Off'; document.getElementById('timer-sec-wrap').style.display = timerOn ? 'flex' : 'none'; syncTimer2(); }
-    function toggleTimer2() { timerOn = !timerOn; document.getElementById('timer-toggle2').className = 'toggle' + (timerOn ? ' on' : ''); document.getElementById('timer-label2').textContent = timerOn ? 'On' : 'Off'; document.getElementById('timer-sec-wrap2').style.display = timerOn ? 'flex' : 'none'; }
-    function toggleSettings() { settingsOpen = !settingsOpen; document.getElementById('settings-panel').style.display = settingsOpen ? 'flex' : 'none'; }
-    function syncTimer2() { const t2 = document.getElementById('timer-toggle2'); if (t2) t2.className = 'toggle' + (timerOn ? ' on' : ''); }
-
-    function buildDeck() { deck = []; for (let r of RANKS) for (let s of SUITS) deck.push({ r, s, v: VALS[r] }); for (let i = deck.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[deck[i], deck[j]] = [deck[j], deck[i]]; } }
-    function pop() { if (!deck.length) buildDeck(); return deck.pop(); }
+    // Deck
+    function buildDeck() {
+      let d = [];
+      for (let r of RANKS) for (let s of SUITS) d.push({ r, s, v: VALS[r] });
+      for (let i = d.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[d[i], d[j]] = [d[j], d[i]]; }
+      return d;
+    }
     function isRed(c) { return RED.includes(c.s); }
     function cc(c) { return isRed(c) ? 'red' : 'black'; }
 
-    function startGame() {
-      const names = [];
-      for (let i = 1; i <= 10; i++) { const v = document.getElementById('pn-' + i).value.trim(); if (v) names.push(v); else if (i <= 2) { alert('Enter at least 2 player names.'); return; } }
-      ante = parseInt(document.getElementById('ante-input').value) || 50;
-      timerSec = parseInt(document.getElementById('timer-seconds').value) || 15;
-      players = names.map((n, i) => ({ name: n, color: AVATAR_COLORS[i % AVATAR_COLORS.length], initials: n.slice(0, 2).toUpperCase() }));
-      document.getElementById('setup').style.display = 'none';
-      showContribute('Everyone antes up to start!');
+    // Generate room code
+    function genCode() { return Math.random().toString(36).substring(2, 6).toUpperCase(); }
+    function genId() { return Math.random().toString(36).substring(2, 12); }
+
+    // ── LOBBY ──
+    async function createRoom() {
+      const name = document.getElementById('host-name').value.trim();
+      const ante = parseInt(document.getElementById('ante-input').value) || 50;
+      if (!name) { alert('Enter your name!'); return; }
+      myId = genId(); myName = name; isHost = true;
+      roomCode = genCode();
+      const player = { id: myId, name, color: COLORS[0], initials: name.slice(0, 2).toUpperCase(), isHost: true };
+      const room = {
+        code: roomCode, status: 'waiting', ante,
+        players: [player],
+        hostId: myId,
+        game: null
+      };
+      await window.db.ref('rooms/' + roomCode).set(room);
+      listenRoom();
+      showWaiting();
     }
 
-    function showContribute(msg) {
-      stopTimer();
-      document.getElementById('table').style.display = 'none';
-      const c = document.getElementById('contribute'); c.style.display = 'flex';
-      document.getElementById('contrib-title').textContent = msg;
-      document.getElementById('contrib-sub').textContent = players.length + ' players × ' + ante + ' = ' + players.length * ante + ' chips';
-      const ac2 = document.getElementById('ante-change'); ac2.value = ante;
-      ac2.oninput = function () { ante = parseInt(this.value) || ante; document.getElementById('contrib-sub').textContent = players.length + ' players × ' + ante + ' = ' + players.length * ante + ' chips'; };
+    async function joinRoom() {
+      const name = document.getElementById('join-name').value.trim();
+      const code = document.getElementById('join-code').value.trim().toUpperCase();
+      if (!name) { alert('Enter your name!'); return; }
+      if (code.length < 4) { alert('Enter a valid room code!'); return; }
+      myId = genId(); myName = name; isHost = false; roomCode = code;
+      const snap = await window.db.ref('rooms/' + code).get();
+      if (!snap.exists()) { alert('Room not found! Check the code.'); return; }
+      const room = snap.val();
+      if (room.status !== 'waiting') { alert('Game already started!'); return; }
+      if (room.players.length >= 10) { alert('Room is full!'); return; }
+      const colorIdx = room.players.length % COLORS.length;
+      const player = { id: myId, name, color: COLORS[colorIdx], initials: name.slice(0, 2).toUpperCase(), isHost: false };
+      await window.db.ref('rooms/' + code + '/players').set([...room.players, player]);
+      listenRoom();
+      showWaiting();
     }
 
-    function confirmAnte() {
-      ante = parseInt(document.getElementById('ante-change').value) || 50;
-      pot += players.length * ante;
-      document.getElementById('contribute').style.display = 'none';
+    function toggleTimerOpt() {
+      timerOn = !timerOn;
+      const tog = document.getElementById('timer-tog');
+      tog.style.background = timerOn ? '#2ecc71' : 'rgba(255,255,255,0.2)';
+      tog.querySelector('.toggle-knob').style.left = timerOn ? '18px' : '2px';
+      document.getElementById('timer-tog-label').textContent = timerOn ? 'On' : 'Off';
+    }
+
+    function listenRoom() {
+      window.db.ref('rooms/' + roomCode).on('value', snap => {
+        if (!snap.exists()) { showLobby(); return; }
+        const room = snap.val();
+        gameState = room;
+        handleRoomUpdate(room);
+      });
+    }
+
+    function handleRoomUpdate(room) {
+      if (room.status === 'waiting') {
+        renderWaiting(room);
+      } else if (room.status === 'ante') {
+        showAnteScreen(room);
+      } else if (room.status === 'playing') {
+        showTable(room);
+      } else if (room.status === 'roundover') {
+        showTable(room);
+      } else if (room.status === 'gameover') {
+        showTable(room);
+      }
+    }
+
+    function renderWaiting(room) {
+      document.getElementById('display-code').textContent = roomCode;
+      const wp = document.getElementById('waiting-players');
+      wp.innerHTML = '';
+      room.players.forEach(p => {
+        const d = document.createElement('div'); d.className = 'waiting-player';
+        d.innerHTML = `<div class="wp-avatar" style="background:${p.color};color:#fff;">${p.initials}</div><div class="wp-name">${p.name}</div>${p.isHost ? '<div class="wp-host">HOST</div>' : ''}`;
+        wp.appendChild(d);
+      });
+      document.getElementById('waiting-msg').textContent = room.players.length + '/10 players joined';
+      const btnStart = document.getElementById('btn-start-game');
+      const timerWrap = document.getElementById('timer-toggle-wrap');
+      if (isHost && room.players.length >= 2) { btnStart.style.display = ''; timerWrap.style.display = 'flex'; }
+      else { btnStart.style.display = 'none'; timerWrap.style.display = 'none'; }
+    }
+
+    async function hostStartGame() {
+      if (!isHost) return;
+      await window.db.ref('rooms/' + roomCode + '/status').set('ante');
+    }
+
+    async function hostConfirmAnte() {
+      if (!isHost) return;
+      const room = gameState;
+      const ante = parseInt(document.getElementById('ante-custom').value) || room.ante || 50;
+      const prevPot = (room.game && room.game.pot > 0) ? room.game.pot : 0;
+      const pot = prevPot + (room.players.length * ante);
+      const deck = buildDeck();
+      // Save updated ante to room
+      await window.db.ref('rooms/' + roomCode + '/ante').set(ante);
+      // Deal 2 cards to each player
+      const players = room.players.map((p, i) => {
+        let a = deck.pop(), b = deck.pop();
+        if (a.v > b.v) [a, b] = [b, a];
+        if (a.v === b.v) { b = deck.pop(); if (a.v > b.v) [a, b] = [b, a]; }
+        return { ...p, result: null, bet: 0, draw: null, cards: [a, b] };
+      });
+      const game = {
+        pot, deck, players,
+        curIdx: 0,
+        roundLog: [],
+        phase: 'bet',
+        status: 'playing'
+      };
+      lastTurnPhase = '';
+      await window.db.ref('rooms/' + roomCode).update({ status: 'playing', game });
+    }
+
+    function showAnteScreen(room) {
+      hideAll();
+      const as = document.getElementById('ante-screen');
+      as.style.display = 'flex';
+      const potEmpty = !room.game || room.game.pot <= 0;
+      document.getElementById('ante-title').textContent = potEmpty ? 'Pot is empty — ante up for a new game!' : 'Everyone antes up!';
+      if (isHost) {
+        document.getElementById('ante-input-wrap').style.display = 'flex';
+        document.getElementById('ante-sub').style.display = 'none';
+        document.getElementById('btn-confirm-ante').style.display = '';
+        document.getElementById('ante-waiting-msg').style.display = 'none';
+        // Set default and update calc live
+        const inp = document.getElementById('ante-custom');
+        inp.value = room.ante || 50;
+        function updateCalc() {
+          const a = parseInt(inp.value) || 50;
+          document.getElementById('ante-calc').textContent = room.players.length + ' players × ' + a + ' = ' + room.players.length * a + ' chips added to pot';
+        }
+        updateCalc();
+        inp.oninput = updateCalc;
+      } else {
+        document.getElementById('ante-input-wrap').style.display = 'none';
+        document.getElementById('ante-sub').style.display = '';
+        document.getElementById('ante-sub').textContent = 'Waiting for host to confirm the stake...';
+        document.getElementById('btn-confirm-ante').style.display = 'none';
+        document.getElementById('ante-waiting-msg').style.display = '';
+        document.getElementById('ante-waiting-msg').textContent = 'Waiting for host to start...';
+      }
+    }
+
+    function showTable(room) {
+      hideAll();
       document.getElementById('table').style.display = 'flex';
-      startRound();
+      if (!room.game) return;
+      // Normalize undefined results back to null (Firebase drops null values)
+      if (room.game.players) {
+        room.game.players = room.game.players.map(p => ({ ...p, result: p.result || null, draw: p.draw || null, cards: p.cards || [] }));
+      }
+      const g = room.game;
+      document.getElementById('pot-display').textContent = g.pot;
+      document.getElementById('room-pill-code').textContent = roomCode;
+      renderPlayers(g);
+      renderActiveZone(g);
+      renderRoundResult(g);
     }
 
-    function startRound() {
-      buildDeck(); roundLog = []; curIdx = 0;
-      players.forEach(p => { p.result = null; p.bet = 0; p.cards = [null, null]; p.draw = null; });
-      renderPot(); renderAll();
-      document.getElementById('round-result').innerHTML = '';
-      document.getElementById('round-result').style.display = 'none';
-      activatePlayer(0);
-    }
-
-    function renderPot() { document.getElementById('pot-display').textContent = pot; }
-
-    function renderAll() {
+    function renderPlayers(g) {
       const sc = document.getElementById('players-scroll'); sc.innerHTML = '';
-      players.forEach((p, i) => {
+      g.players.forEach((p, i) => {
+        const isMe = p.id === myId;
+        const isCur = i === g.curIdx;
+        const cls = isCur ? 'active' : p.result === 'win' ? 'done-win' : p.result === 'loss' ? 'done-loss' : p.result === 'skip' ? 'skipped' : '';
         const d = document.createElement('div');
-        const cls = i === curIdx ? 'active' : p.result === 'win' ? 'done-win' : p.result === 'loss' ? 'done-loss' : p.result === 'skip' ? 'skipped' : '';
-        d.className = 'pcard ' + cls;
-        const st = p.result ? (p.result === 'skip' ? 'Skipped' : 'Bet: ' + p.bet) : i === curIdx ? 'Betting...' : 'Waiting';
-        d.innerHTML = `<div class="pavatar" style="background:${p.color};color:#fff;">${p.initials}</div><div class="pname">${p.name}</div><div class="pstatus">${st}</div><div class="mini-cards">${mc(p.cards ? p.cards[0] : null)}${mc(p.cards ? p.cards[1] : null)}${p.draw ? mc(p.draw) : mcE()}</div>`;
+        d.className = 'pcard ' + cls + (isMe ? ' me' : '');
+        const st = p.result ? (p.result === 'skip' ? 'Skipped' : 'Bet: ' + p.bet) : isCur ? 'Betting...' : 'Waiting';
+        d.innerHTML = `<div class="pavatar" style="background:${p.color};color:#fff;">${p.initials}</div><div class="pname">${p.name}${isMe ? ' <span class="pname-you">(you)</span>' : ''}</div><div class="pstatus">${st}</div><div class="mini-cards">${mc(p.cards ? p.cards[0] : null)}${mc(p.cards ? p.cards[1] : null)}${p.draw ? mc(p.draw) : mcE()}</div>`;
         sc.appendChild(d);
       });
     }
@@ -930,113 +1227,319 @@
     function mc(c) { if (!c) return `<div class="mc empty"></div>`; return `<div class="mc ${cc(c)}">${c.r}<br>${c.s}</div>`; }
     function mcE() { return `<div class="mc empty"></div>`; }
 
-    function activatePlayer(idx) {
-      curIdx = idx; bet = 0; phase = 'bet';
-      const p = players[idx];
-      let a = pop(), b = pop();
-      if (a.v > b.v) [a, b] = [b, a];
-      if (a.v === b.v) { b = pop(); if (a.v > b.v) [a, b] = [b, a]; }
-      p.cards = [a, b]; playFlip();
-      setBig('bc-l', 'bcl-t', 'bcl-s', 'bcl-b', a, true);
-      setBig('bc-m', 'bcm-t', 'bcm-s', 'bcm-b', b, true);
-      const r = document.getElementById('bc-r'); r.className = 'bc back'; r.innerHTML = '';
-      const av = document.getElementById('az-avatar'); av.style.background = p.color; av.style.color = '#fff'; av.textContent = p.initials;
-      document.getElementById('az-name').textContent = p.name + "'s turn";
-      document.getElementById('az-bet').textContent = 0;
-      document.getElementById('az-res-wrap').innerHTML = '';
-      document.getElementById('az-spread').textContent = spreadTxt(a, b);
-      document.getElementById('bet-area').style.display = 'flex';
-      document.getElementById('btn-skip').style.display = '';
-      document.getElementById('btn-allin').style.display = '';
-      document.getElementById('btn-draw').style.display = 'none';
-      document.getElementById('btn-nextp').style.display = 'none';
-      document.getElementById('active-zone').style.display = 'flex';
-      startTimerIfOn(); renderAll();
+    function renderActiveZone(g) {
+      const az = document.getElementById('active-zone');
+      const wb = document.getElementById('watching-banner');
+      const rr = document.getElementById('round-result');
+      if (g.status === 'gameover' || g.status === 'roundover') { return; }
+
+      const curPlayer = g.players[g.curIdx];
+      if (!curPlayer) return;
+      const isMyTurn = curPlayer.id === myId;
+
+      // Set up cards display regardless of whose turn
+      const [a, b] = curPlayer.cards || [null, null];
+      if (a && b) {
+        setBig('bc-l', 'bcl-t', 'bcl-s', 'bcl-b', a);
+        setBig('bc-m', 'bcm-t', 'bcm-s', 'bcm-b', b);
+      }
+      const rc = document.getElementById('bc-r');
+      if (curPlayer.draw) {
+        rc.className = 'bc ' + cc(curPlayer.draw) + ' flip-in';
+        rc.innerHTML = `<span class="bl">${curPlayer.draw.r}</span><span class="bs">${curPlayer.draw.s}</span><span class="blb">${curPlayer.draw.r}</span>`;
+      } else {
+        rc.className = 'bc back'; rc.innerHTML = '';
+      }
+
+      const av = document.getElementById('az-avatar');
+      av.style.background = curPlayer.color; av.style.color = '#fff'; av.textContent = curPlayer.initials;
+      document.getElementById('az-name').textContent = isMyTurn ? "Your turn!" : curPlayer.name + "'s turn";
+      document.getElementById('az-spread').textContent = a && b ? spreadTxt(a, b) : '';
+
+      // Show result if drawn
+      const resWrap = document.getElementById('az-res-wrap');
+      if (curPlayer.result && curPlayer.draw) {
+        const win = curPlayer.result === 'win';
+        resWrap.innerHTML = `<div class="az-result ${win ? 'win' : 'loss'}">${win ? 'WIN  +' + curPlayer.bet : (curPlayer.result === 'loss' ? 'LOSS  -' + curPlayer.bet : '')}</div>`;
+      } else {
+        resWrap.innerHTML = '';
+      }
+
+      if (isMyTurn && g.phase === 'bet') {
+        az.style.display = 'flex';
+        wb.style.display = 'none';
+        document.getElementById('bet-area').style.display = 'flex';
+        document.getElementById('btn-skip').style.display = '';
+        document.getElementById('btn-allin').style.display = '';
+        document.getElementById('btn-draw').style.display = localBet > 0 ? '' : 'none';
+        document.getElementById('btn-nextp').style.display = 'none';
+        document.getElementById('az-bet').textContent = localBet;
+        // Only start timer when it's a fresh new turn for me
+        const turnKey = g.curIdx + '-' + g.phase;
+        if (turnKey !== lastTurnPhase) { lastTurnPhase = turnKey; localBet = 0; document.getElementById('az-bet').textContent = 0; document.getElementById('btn-draw').style.display = 'none'; if (timerOn) startLocalTimer(g); }
+      } else if (isMyTurn && g.phase === 'drawn') {
+        az.style.display = 'flex';
+        wb.style.display = 'none';
+        document.getElementById('bet-area').style.display = 'none';
+        document.getElementById('btn-skip').style.display = 'none';
+        document.getElementById('btn-allin').style.display = 'none';
+        document.getElementById('btn-draw').style.display = 'none';
+        document.getElementById('btn-nextp').style.display = '';
+        stopLocalTimer();
+      } else {
+        az.style.display = 'flex';
+        wb.style.display = '';
+        document.getElementById('bet-area').style.display = 'none';
+        document.getElementById('btn-skip').style.display = 'none';
+        document.getElementById('btn-allin').style.display = 'none';
+        document.getElementById('btn-draw').style.display = 'none';
+        document.getElementById('btn-nextp').style.display = 'none';
+        wb.innerHTML = `Watching <strong>${curPlayer.name}</strong>'s turn...`;
+        stopLocalTimer();
+      }
+    }
+
+    function setBig(el, t, s, b, c) {
+      const e = document.getElementById(el); e.className = 'bc ' + cc(c);
+      document.getElementById(t).textContent = c.r;
+      document.getElementById(s).textContent = c.s;
+      document.getElementById(b).textContent = c.r;
     }
 
     function spreadTxt(a, b) { const s = b.v - a.v - 1; return s > 0 ? s + ' card' + (s > 1 ? 's' : '') + ' in between' : 'No cards in between — risky!'; }
 
-    function setBig(el, t, s, b, c, anim) {
-      const e = document.getElementById(el); e.className = 'bc ' + cc(c) + (anim ? ' flip-in' : '');
-      document.getElementById(t).textContent = c.r; document.getElementById(s).textContent = c.s; document.getElementById(b).textContent = c.r;
+    // ── BET ACTIONS (only active player) ──
+    function addBet(amt) {
+      if (!isMyTurn()) return;
+      playChip();
+      const pot = gameState.game.pot;
+      if (localBet + amt > pot) amt = pot - localBet;
+      if (amt <= 0) return;
+      localBet += amt;
+      document.getElementById('az-bet').textContent = localBet;
+      document.getElementById('btn-draw').style.display = '';
+    }
+    function addManual() {
+      const v = parseInt(document.getElementById('manual-input').value) || 0;
+      if (v > 0) addBet(v);
+      document.getElementById('manual-input').value = '';
+    }
+    function clearBet() { if (!isMyTurn()) return; localBet = 0; document.getElementById('az-bet').textContent = 0; document.getElementById('btn-draw').style.display = 'none'; }
+    function doAllIn() { if (!isMyTurn()) return; localBet = 0; addBet(gameState.game.pot); }
+    function isMyTurn() { return gameState && gameState.game && gameState.game.players[gameState.game.curIdx] && gameState.game.players[gameState.game.curIdx].id === myId; }
+
+    async function doSkip() {
+      if (!isMyTurn()) return;
+      stopLocalTimer();
+      const g = JSON.parse(JSON.stringify(gameState.game));
+      g.players[g.curIdx].result = 'skip';
+      g.players[g.curIdx].bet = 0;
+      if (!g.roundLog) g.roundLog = [];
+      g.roundLog.push({ name: g.players[g.curIdx].name, result: 'skip', bet: 0 });
+      advanceGame(g);
     }
 
-    function addBet(amt) { if (phase !== 'bet') return; playChip(); if (bet + amt > pot) amt = pot - bet; if (amt <= 0) return; bet += amt; document.getElementById('az-bet').textContent = bet; document.getElementById('btn-draw').style.display = ''; }
-    function addManual() { const v = parseInt(document.getElementById('manual-input').value) || 0; if (v > 0) addBet(v); document.getElementById('manual-input').value = ''; }
-    function clearBet() { if (phase !== 'bet') return; bet = 0; document.getElementById('az-bet').textContent = 0; document.getElementById('btn-draw').style.display = 'none'; }
-    function allIn() { if (phase !== 'bet') return; bet = 0; addBet(pot); }
-
-    function skipPlayer() { stopTimer(); players[curIdx].result = 'skip'; players[curIdx].bet = 0; roundLog.push({ name: players[curIdx].name, result: 'skip', bet: 0 }); advance(); }
-
-    function doDraw() {
-      if (phase !== 'bet' || bet === 0) return;
-      stopTimer(); phase = 'draw';
-      const p = players[curIdx]; const d = pop(); p.draw = d; p.bet = bet; const [a, b] = p.cards;
+    async function doDraw() {
+      if (!isMyTurn() || localBet === 0) return;
+      stopLocalTimer();
+      const g = JSON.parse(JSON.stringify(gameState.game));
+      if (!g.roundLog) g.roundLog = [];
+      if (!g.deck) g.deck = buildDeck();
+      const deck = g.deck;
+      const d = deck.pop();
+      const p = g.players[g.curIdx];
+      if (!p.cards || p.cards.length < 2) { alert('Card data missing, please restart round.'); return; }
+      const [a, b] = p.cards;
+      p.draw = d; p.bet = localBet;
+      const win = d.v > a.v && d.v < b.v;
+      const hit = d.v === a.v || d.v === b.v;
+      p.result = win ? 'win' : 'loss';
+      if (win) g.pot -= localBet; else g.pot += localBet;
+      g.roundLog.push({ name: p.name, result: p.result, bet: localBet });
+      g.deck = deck;
+      g.phase = 'drawn';
       playFlip();
-      const rc = document.getElementById('bc-r'); rc.className = 'bc ' + cc(d) + ' flip-in'; rc.innerHTML = `<span class="bl">${d.r}</span><span class="bs">${d.s}</span><span class="blb">${d.r}</span>`;
-      const win = d.v > a.v && d.v < b.v; const hit = d.v === a.v || d.v === b.v;
-      p.result = win ? 'win' : 'loss'; if (win) pot -= bet; else pot += bet;
-      roundLog.push({ name: p.name, result: p.result, bet }); renderPot();
-      setTimeout(() => { win ? playWin() : playLoss(); document.getElementById('az-res-wrap').innerHTML = `<div class="az-result ${win ? 'win' : 'loss'}">${win ? 'WIN  +' + bet : (hit ? 'HIT BOUNDARY  -' + bet : 'LOSS  -' + bet)}</div>`; }, 200);
-      addHist(win ? 'w' : 'l');
-      document.getElementById('bet-area').style.display = 'none';
-      document.getElementById('btn-skip').style.display = 'none';
-      document.getElementById('btn-allin').style.display = 'none';
-      document.getElementById('btn-draw').style.display = 'none';
-      renderAll();
-      if (win && pot === 0) { setTimeout(() => endGame(p), 700); } else { document.getElementById('btn-nextp').style.display = ''; }
+      setTimeout(() => win ? playWin() : playLoss(), 300);
+      localBet = 0;
+      await window.db.ref('rooms/' + roomCode + '/game').set(g);
+      // If pot is now 0, immediately end the round — don't wait for Next Player
+      if (g.pot <= 0) {
+        setTimeout(async () => { await endRound(g); }, 1500);
+      }
     }
 
-    function endGame(winner) {
-      document.getElementById('active-zone').style.display = 'none';
-      const rr = document.getElementById('round-result'); rr.style.display = 'flex'; rr.innerHTML = '';
-      const title = document.createElement('div'); title.className = 'rr-title'; title.textContent = 'Round Summary'; rr.appendChild(title);
-      const rows = document.createElement('div'); rows.className = 'rr-rows';
-      roundLog.forEach(r => { const d = document.createElement('div'); d.className = 'rr-row'; const rc = r.result === 'win' ? 'w' : r.result === 'loss' ? 'l' : 's'; const rt = r.result === 'win' ? '+' + r.bet : r.result === 'loss' ? '-' + r.bet : 'Skip'; d.innerHTML = `<span>${r.name}</span><span class="rr-res ${rc}">${rt}</span>`; rows.appendChild(d); });
-      const pr = document.createElement('div'); pr.className = 'rr-row'; pr.style.cssText = 'border-top:0.5px solid rgba(255,255,255,0.2);padding-top:6px;margin-top:4px;'; pr.innerHTML = `<span>Pot remaining</span><span style="color:#e8d9a0;font-weight:500;">${pot}</span>`; rows.appendChild(pr); rr.appendChild(rows);
-      const wm = document.createElement('div'); wm.style.cssText = 'display:flex;align-items:center;gap:8px;justify-content:center;margin-top:4px;'; wm.innerHTML = `<div style="width:30px;height:30px;border-radius:50%;background:${winner.color};color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;">${winner.initials}</div><span style="color:#2ecc71;font-size:15px;font-weight:500;">${winner.name} drained the pot!</span>`; rr.appendChild(wm);
-      const nb = document.createElement('button'); nb.className = 'btn bp'; nb.textContent = 'New Game — Ante Up'; nb.style.marginTop = '6px'; nb.onclick = () => showContribute('New game! Everyone antes up.'); rr.appendChild(nb);
+    async function doNextPlayer() {
+      if (!gameState || !gameState.game) return;
+      const g = JSON.parse(JSON.stringify(gameState.game));
+      // Only the current player can advance
+      const curPlayer = g.players[g.curIdx];
+      if (!curPlayer || curPlayer.id !== myId) return;
+      advanceGame(g);
     }
 
-    function nextPlayer() { advance(); }
-
-    function advance() {
-      renderAll();
-      const next = players.findIndex((p, i) => i > curIdx && p.result === null);
-      if (next === -1) { showRoundSummary(); } else { activatePlayer(next); }
+    async function advanceGame(g) {
+      // Always use freshest state from Firebase
+      const snap = await window.db.ref('rooms/' + roomCode + '/game').get();
+      const fresh = snap.exists() ? snap.val() : g;
+      if (!fresh.roundLog) fresh.roundLog = [];
+      const next = fresh.players.findIndex((p, i) => i > fresh.curIdx && (p.result === null || p.result === undefined));
+      console.log('advanceGame: curIdx=' + fresh.curIdx + ' next=' + next + ' pot=' + fresh.pot);
+      if (next === -1) {
+        await endRound(fresh);
+      } else {
+        fresh.curIdx = next;
+        fresh.phase = 'bet';
+        lastTurnPhase = '';
+        await window.db.ref('rooms/' + roomCode + '/game').set(fresh);
+      }
     }
 
-    function showRoundSummary() {
-      stopTimer();
-      document.getElementById('active-zone').style.display = 'none';
-      const rr = document.getElementById('round-result'); rr.style.display = 'flex'; rr.innerHTML = '';
-      const title = document.createElement('div'); title.className = 'rr-title'; title.textContent = 'Round Summary'; rr.appendChild(title);
-      const rows = document.createElement('div'); rows.className = 'rr-rows';
-      roundLog.forEach(r => { const d = document.createElement('div'); d.className = 'rr-row'; const rc = r.result === 'win' ? 'w' : r.result === 'loss' ? 'l' : 's'; const rt = r.result === 'win' ? '+' + r.bet : r.result === 'loss' ? '-' + r.bet : 'Skip'; d.innerHTML = `<span>${r.name}</span><span class="rr-res ${rc}">${rt}</span>`; rows.appendChild(d); });
-      const pr = document.createElement('div'); pr.className = 'rr-row'; pr.style.cssText = 'border-top:0.5px solid rgba(255,255,255,0.2);padding-top:6px;margin-top:4px;'; pr.innerHTML = `<span>Pot</span><span style="color:#e8d9a0;font-weight:500;">${pot}</span>`; rows.appendChild(pr); rr.appendChild(rows);
-      if (pot <= 0) { const m = document.createElement('div'); m.className = 'pot-msg'; m.textContent = 'Pot is empty — new game!'; rr.appendChild(m); setTimeout(() => showContribute('New game! Everyone antes up.'), 1400); }
-      else { const m = document.createElement('div'); m.className = 'pot-msg'; m.textContent = 'No winner this round — pot stays!'; rr.appendChild(m); const nb = document.createElement('button'); nb.className = 'btn bp'; nb.textContent = 'Next Round'; nb.style.marginTop = '6px'; nb.onclick = startRound; rr.appendChild(nb); }
+    async function endRound(g) {
+      if (g.pot <= 0) {
+        // Pot empty — show button for host to start new game
+        await window.db.ref('rooms/' + roomCode + '/game').update({ status: 'roundover', pot: g.pot });
+        await window.db.ref('rooms/' + roomCode).update({ status: 'roundover' });
+      } else {
+        // Still chips left — auto restart after 2s
+        await window.db.ref('rooms/' + roomCode + '/game').update({ status: 'roundover' });
+        await window.db.ref('rooms/' + roomCode).update({ status: 'roundover' });
+        setTimeout(async () => { await startNextRound(g); }, 2000);
+      }
     }
 
-    function startTimerIfOn() {
-      stopTimer(); if (!timerOn) return;
-      timerSec = parseInt(document.getElementById('timer-sec2').value) || 15;
-      timerLeft = timerSec; updateTimerUI();
+    async function startNextRound(prevGame) {
+      const room = gameState;
+      const deck = buildDeck();
+      const players = room.players.map((p, i) => {
+        let a = deck.pop(), b = deck.pop();
+        if (a.v > b.v) [a, b] = [b, a];
+        if (a.v === b.v) { b = deck.pop(); if (a.v > b.v) [a, b] = [b, a]; }
+        return { ...p, result: null, bet: 0, draw: null, cards: [a, b] };
+      });
+      const game = {
+        pot: prevGame.pot, deck, players,
+        curIdx: 0, roundLog: [], phase: 'bet', status: 'playing'
+      };
+      lastTurnPhase = '';
+      await window.db.ref('rooms/' + roomCode).update({ status: 'playing', game });
+    }
+
+    function renderRoundResult(g) {
+      const rr = document.getElementById('round-result');
+      const room = gameState;
+      if (room.status === 'roundover' || room.status === 'gameover') {
+        rr.style.display = 'flex'; rr.innerHTML = '';
+        histRound++;
+        // Add history row
+        const roundWinner = (g.roundLog || []).find(r => r.result === 'win');
+        addHistRound(histRound, roundWinner ? roundWinner.name : null, g.roundLog);
+        const title = document.createElement('div'); title.className = 'rr-title'; title.textContent = 'Round Summary'; rr.appendChild(title);
+        const rows = document.createElement('div'); rows.className = 'rr-rows';
+        (g.roundLog || []).forEach(r => {
+          const d = document.createElement('div'); d.className = 'rr-row';
+          const rc = r.result === 'win' ? 'w' : r.result === 'loss' ? 'l' : 's';
+          const rt = r.result === 'win' ? '+' + r.bet : r.result === 'loss' ? '-' + r.bet : 'Skip';
+          d.innerHTML = `<span>${r.name}</span><span class="rr-res ${rc}">${rt}</span>`;
+          rows.appendChild(d);
+        });
+        const pr = document.createElement('div'); pr.className = 'rr-row';
+        pr.style.cssText = 'border-top:0.5px solid rgba(255,255,255,0.2);padding-top:6px;margin-top:4px;';
+        pr.innerHTML = `<span>Pot</span><span style="color:#e8d9a0;font-weight:500;">${g.pot}</span>`;
+        rows.appendChild(pr); rr.appendChild(rows);
+
+        if (g.pot <= 0) {
+          // Pot empty — any player can start new game
+          const m = document.createElement('div'); m.className = 'pot-msg'; m.textContent = 'Pot is empty!'; rr.appendChild(m);
+          const nb = document.createElement('button'); nb.className = 'btn bp'; nb.style.marginTop = '8px';
+          nb.textContent = 'New Game — Ante Up';
+          nb.onclick = async () => { await window.db.ref('rooms/' + roomCode).update({ status: 'ante' }); };
+          rr.appendChild(nb);
+        } else {
+          const m = document.createElement('div'); m.className = 'pot-msg'; m.textContent = 'No winner — next round starting...'; rr.appendChild(m);
+        }
+      } else {
+        rr.style.display = 'none'; rr.innerHTML = '';
+      }
+    }
+
+    // ── TIMER ──
+    function startLocalTimer(g) {
+      if (!timerOn) return;
+      stopLocalTimer();
+      let left = 15;
+      updateTimerUI(left, 15);
       document.getElementById('timer-ring').style.display = '';
-      timerInterval = setInterval(() => { timerLeft--; if (timerLeft <= 3) playTick(); updateTimerUI(); if (timerLeft <= 0) { stopTimer(); skipPlayer(); } }, 1000);
+      timerInterval = setInterval(() => {
+        left--;
+        if (left <= 3) playTick();
+        updateTimerUI(left, 15);
+        if (left <= 0) { stopLocalTimer(); doSkip(); }
+      }, 1000);
     }
-    function stopTimer() { clearInterval(timerInterval); timerInterval = null; document.getElementById('timer-ring').style.display = 'none'; }
-    function updateTimerUI() {
-      const circ = 100.5; const offset = circ * (1 - timerLeft / timerSec);
+    function stopLocalTimer() { clearInterval(timerInterval); timerInterval = null; document.getElementById('timer-ring').style.display = 'none'; }
+    function updateTimerUI(left, total) {
+      const circ = 100.5; const offset = circ * (1 - left / total);
       document.getElementById('timer-arc').style.strokeDashoffset = offset;
-      document.getElementById('timer-txt').textContent = timerLeft;
-      document.getElementById('timer-arc').style.stroke = timerLeft <= 5 ? '#e74c3c' : timerLeft <= 10 ? '#f39c12' : '#e8d9a0';
+      document.getElementById('timer-txt').textContent = left;
+      document.getElementById('timer-arc').style.stroke = left <= 5 ? '#e74c3c' : left <= 10 ? '#f39c12' : '#e8d9a0';
     }
 
-    function addHist(t) { const d = document.createElement('div'); d.className = 'hd ' + t; const h = document.getElementById('history'); h.appendChild(d); if (h.children.length > 40) h.removeChild(h.firstChild); }
+    let histRound = 0;
+    function addHistRound(roundNum, winnerName, roundLog) {
+      const h = document.getElementById('history');
+      const empty = h.querySelector('.hist-empty');
+      if (empty) empty.remove();
+      const row = document.createElement('div');
+      row.className = 'hist-row';
+      const numEl = document.createElement('span'); numEl.className = 'hist-num'; numEl.textContent = '#' + roundNum;
+      const dot = document.createElement('div'); dot.className = 'hist-dot ' + (winnerName ? 'w' : 'l');
+      const nameEl = document.createElement('span');
+      if (winnerName) {
+        nameEl.className = 'hist-winner'; nameEl.textContent = winnerName + ' won!';
+      } else {
+        nameEl.className = 'hist-nowinner'; nameEl.textContent = 'No winner';
+      }
+      // Show bets summary
+      const bets = document.createElement('span');
+      bets.style.cssText = 'color:#a8d5a2;font-size:11px;margin-left:auto;';
+      const parts = (roundLog || []).filter(r => r.result !== 'skip').map(r => (r.result === 'win' ? '+' : '-') + r.bet);
+      bets.textContent = parts.join('  ');
+      row.appendChild(numEl); row.appendChild(dot); row.appendChild(nameEl); row.appendChild(bets);
+      h.insertBefore(row, h.firstChild); // newest on top
+      // Keep max 20 rounds
+      while (h.children.length > 20) h.removeChild(h.lastChild);
+    }
 
-    buildDeck();
+    // ── NAVIGATION ──
+    function hideAll() {
+      document.getElementById('lobby').style.display = 'none';
+      document.getElementById('waiting').style.display = 'none';
+      document.getElementById('ante-screen').style.display = 'none';
+      document.getElementById('table').style.display = 'none';
+    }
+    function showLobby() { hideAll(); document.getElementById('lobby').style.display = 'flex'; }
+    function showWaiting() { hideAll(); document.getElementById('waiting').style.display = 'flex'; }
+
+    async function leaveRoom() {
+      if (roomCode) {
+        if (isHost) { await window.db.ref('rooms/' + roomCode).remove(); }
+        else {
+          const snap = await window.db.ref('rooms/' + roomCode + '/players').get();
+          if (snap.exists()) {
+            const players = snap.val().filter(p => p.id !== myId);
+            await window.db.ref('rooms/' + roomCode + '/players').set(players);
+          }
+        }
+        window.db.ref('rooms/' + roomCode).off();
+      }
+      showLobby();
+    }
+
+    // uppercase room code input
+    document.getElementById('join-code').addEventListener('input', function () { this.value = this.value.toUpperCase(); });
   </script>
+
+
 </body>
 
 </html>
