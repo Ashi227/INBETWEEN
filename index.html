@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>In-Between</title>
+  <script src="https://unpkg.com/@discord/embedded-app-sdk@1.2.0/output/index.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -994,6 +995,55 @@
       </div>
     </div>
   </div>
+
+  <!-- Discord Activity SDK Init -->
+  <script>
+    (async function () {
+      try {
+        if (window.DiscordSDK || window.__DISCORD_SDK__) {
+          const sdk = new DiscordSDK('1484404960476135487');
+          await sdk.ready();
+          window.discordSdk = sdk;
+          // Authorize with Discord
+          const { code } = await sdk.commands.authorize({
+            client_id: '1484404960476135487',
+            response_type: 'code',
+            state: '',
+            prompt: 'none',
+            scope: ['identify', 'guilds']
+          });
+          // Get user info
+          const res = await fetch('/api/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code })
+          });
+          if (res.ok) {
+            const { access_token } = await res.json();
+            await sdk.commands.authenticate({ access_token });
+            // Get user info from Discord
+            const userRes = await fetch('https://discord.com/api/users/@me', {
+              headers: { Authorization: 'Bearer ' + access_token }
+            });
+            if (userRes.ok) {
+              const user = await userRes.json();
+              window.discordUser = user;
+              // Pre-fill name fields with Discord username
+              setTimeout(() => {
+                const h = document.getElementById('host-name');
+                const j = document.getElementById('join-name');
+                if (h) h.value = user.global_name || user.username;
+                if (j) j.value = user.global_name || user.username;
+              }, 500);
+            }
+          }
+          console.log('Discord Activity ready!');
+        }
+      } catch (e) {
+        console.log('Not in Discord or SDK error:', e.message);
+      }
+    })();
+  </script>
 
   <!-- Firebase CDN — must load FIRST -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
