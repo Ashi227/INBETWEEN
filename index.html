@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>In-Between ni JMV</title>
+  <title>In-Between</title>
   <script src="https://unpkg.com/@discord/embedded-app-sdk@1.2.0/output/index.min.js"></script>
   <style>
     * {
@@ -857,7 +857,7 @@
 
 <body>
   <div id="app">
-    <h2>In-Between ni Jessica Mae</h2>
+    <h2>In-Between</h2>
 
     <!-- LOBBY -->
     <div id="lobby">
@@ -875,6 +875,28 @@
         <input type="text" id="join-code" placeholder="Room code (e.g. KXBT)" maxlength="6"
           style="text-transform:uppercase;letter-spacing:4px;text-align:center;font-size:18px;">
         <button class="btn bg" onclick="joinRoom()">Join Room</button>
+      </div>
+
+      <!-- RULES -->
+      <div class="lobby-card" style="gap:10px;">
+        <div class="lobby-title">How to Play</div>
+        <div style="color:#a8d5a2;font-size:12px;line-height:1.8;">
+          <div style="color:#e8d9a0;font-size:12px;font-weight:500;margin-bottom:4px;">Card Order (low to high)</div>
+          <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:8px 12px;text-align:center;color:#e8d9a0;font-size:13px;letter-spacing:1px;">
+            A &lt; 2 &lt; 3 &lt; 4 &lt; 5 &lt; 6 &lt; 7 &lt; 8 &lt; 9 &lt; 10 &lt; J &lt; Q &lt; K
+          </div>
+        </div>
+        <div style="color:#a8d5a2;font-size:12px;line-height:1.9;display:flex;flex-direction:column;gap:6px;">
+          <div><span style="color:#2ecc71;font-weight:500;">WIN</span> — Dealer card falls strictly between your 2 cards</div>
+          <div><span style="color:#e74c3c;font-weight:500;">LOSS</span> — Dealer card matches or is outside your 2 cards</div>
+          <div><span style="color:#f39c12;font-weight:500;">POT</span> — Everyone antes up. Winners take from the pot, losers add to it</div>
+          <div><span style="color:#e8d9a0;font-weight:500;">NEW GAME</span> — When pot hits 0, everyone antes up again</div>
+        </div>
+        <div style="background:rgba(0,0,0,0.2);border-radius:8px;padding:8px 12px;color:#a8d5a2;font-size:11px;line-height:1.7;">
+          Example: You have <span style="color:#e8d9a0;">3</span> and <span style="color:#e8d9a0;">Q</span> — 
+          winning cards are 4, 5, 6, 7, 8, 9, 10, J. 
+          Losing cards are A, 2, 3, Q, K.
+        </div>
       </div>
     </div>
 
