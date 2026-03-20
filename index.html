@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>In-Between</title>
+  <title>In-Between ni JMV (JESSICA MAE VELASQUEZ)</title>
   <script src="https://unpkg.com/@discord/embedded-app-sdk@1.2.0/output/index.min.js"></script>
   <style>
     * {
@@ -1374,8 +1374,21 @@
       if (v > 0) addBet(v);
       document.getElementById('manual-input').value = '';
     }
-    function clearBet() { if (!isMyTurn()) return; localBet = 0; document.getElementById('az-bet').textContent = 0; document.getElementById('btn-draw').style.display = 'none'; }
-    function doAllIn() { if (!isMyTurn()) return; localBet = 0; addBet(gameState.game.pot); }
+    function clearBet() {
+      if (!isMyTurn()) return;
+      localBet = 0;
+      document.getElementById('az-bet').textContent = 0;
+      document.getElementById('btn-draw').style.display = 'none';
+      document.getElementById('btn-skip').style.display = '';
+      document.getElementById('btn-allin').style.display = '';
+    }
+    function doAllIn() {
+      if (!isMyTurn()) return;
+      localBet = 0;
+      addBet(gameState.game.pot);
+      // Keep clear button visible so player can undo all-in
+      document.getElementById('btn-draw').style.display = '';
+    }
     function isMyTurn() { return gameState && gameState.game && gameState.game.players[gameState.game.curIdx] && gameState.game.players[gameState.game.curIdx].id === myId; }
 
     async function doSkip() {
